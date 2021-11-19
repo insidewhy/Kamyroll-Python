@@ -1,7 +1,6 @@
 import argparse
 import sys
 from colorama import init
-import termcolor
 from . import api
 from . import downloader
 from . import utils
@@ -12,12 +11,6 @@ def main():
     parser.add_argument("--login", "-l", type=str, help="Login with ID")
     parser.add_argument(
         "--connect", "-c", action="store_true", help="Login with configured ID"
-    )
-    parser.add_argument(
-        "--bypass",
-        "-b",
-        action="store_true",
-        help="Generate premium access to the catalog",
     )
     parser.add_argument("--search", type=str, help="Search a series, films, episode")
     parser.add_argument("--season", "-s", type=str, help="Show seasons of a series")
@@ -34,26 +27,23 @@ def main():
 
     try:
         config = utils.get_config()
-    except LookupError as e:
+    except Exception as e:
         parser.print_help()
-        termcolor.cprint(e, "red")
+        utils.print_msg(e, 1)
         sys.exit(0)
 
     cr_api = api.crunchyroll(config)
 
     if args.login:
         (username, password) = utils.get_login_form(args.login)
-        cr_api.login(username, password, False)
+        cr_api.login(username, password)
     elif args.connect:
         username = config.get("configuration").get("account").get("email")
         password = config.get("configuration").get("account").get("password")
         if username is None or password is None:
             utils.print_msg("ERROR: No login is configured.", 1)
             sys.exit(0)
-        cr_api.login(username, password, False)
-    elif args.bypass:
-        (username, password) = utils.get_bypass()
-        cr_api.login(username, password, True)
+        cr_api.login(username, password)
     elif args.search:
         cr_api.search(args.search)
     elif args.season:

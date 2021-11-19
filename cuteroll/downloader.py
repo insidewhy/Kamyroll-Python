@@ -283,8 +283,7 @@ class crunchyroll:
             sys.exit(0)
 
         playlist_id = extractor.playlist(r, self.config, playlist_episode)
-
-        if playlist_id == []:
+        if not playlist_id:
             utils.print_msg("ERROR: The playlist is empty.", 1)
             sys.exit(0)
         else:

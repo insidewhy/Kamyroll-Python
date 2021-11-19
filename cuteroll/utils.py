@@ -1,28 +1,28 @@
-import base64
 import math
 from datetime import datetime
 import os
 import json
 import sys
-from cryptography.fernet import Fernet
 from xdg import BaseDirectory
 from termcolor import colored
 import requests
 from pathlib import Path
 
 src_path = Path(__file__).parent.absolute()
+CONFIG_FILE = "cuteroll.json"
 
 
 def get_config():
-    config_path = BaseDirectory.load_first_config("cuteroll.json")
+    config_path = BaseDirectory.load_first_config(CONFIG_FILE)
     if config_path:
         file = open(config_path, "r")
         config = json.load(file)
         file.close()
         return config
     else:
-        message = create_config()
-        raise LookupError(f"{message} \nERROR: Configuration file not found.")
+        create_config()
+        print_msg("ERROR: Configuration file not found.", 1)
+        sys.exit(0)
 
 
 def create_config():
@@ -33,9 +33,10 @@ def create_config():
             starter_data = json.load(starter_config)
             json.dump(starter_data, config_file, indent=4)
 
-    return (
-        f"Created config file at {config_path}. "
-        "Please run the login command to populate the entries."
+    print_msg(
+        f"Created config file at {config_path}."
+        "Please run the login command to populate the entries.",
+        2,
     )
 
 
@@ -47,25 +48,6 @@ def get_login_form(args_login):
     except Exception:
         print_msg("ERROR: Invalid login form.", 1)
         sys.exit(0)
-
-
-def decrypt_base64(data):
-    key_bytes = data.encode("ascii")
-    base64_bytes = base64.b64decode(key_bytes)
-    return base64_bytes.decode("ascii")
-
-
-def get_bypass():
-    base64_data = "only_windows_version"
-    encrypted_data = decrypt_base64(base64_data)
-    json_encryption = json.loads(encrypted_data)
-    encryption_key = decrypt_base64(json_encryption.get("key"))
-    fernet = Fernet(encryption_key.encode("ascii"))
-    encryption_token = json_encryption.get("token")
-    bypass_id = fernet.decrypt(encryption_token.encode("ascii")).decode()
-    username = bypass_id.split(":")[0].strip()
-    password = bypass_id.split(":")[1].strip()
-    return username, password
 
 
 def print_msg(msg, tp):
@@ -115,7 +97,7 @@ def get_playlist_episode(episodes, episode_count):
         else:
             start = int(episodes.split("[")[1].split(":")[0])
             end = int(episodes.split(":")[1].split("]")[0])
-            if start <= end and end <= episode_count:
+            if start <= end <= episode_count:
                 playlist_episode = get_numbers(start, end)
                 return playlist_episode
             else:
@@ -199,8 +181,8 @@ def get_headers(config):
 
 
 def save_config(config):
-    config_path = BaseDirectory.load_first_config("cuteroll.json")
-    file = open(config_path, "w", encoding="utf8")
+    config_path = BaseDirectory.load_first_config(CONFIG_FILE)
+    file = open(config_path, "w", encoding="utf-8")
     file.write(json.dumps(config, indent=4, sort_keys=False, ensure_ascii=False))
     file.close()
 
@@ -362,7 +344,7 @@ def get_session(config):
                     "https": "{}://{}:{}".format(proxy_type, host, port),
                 }
         else:
-            raise ValueError("Unknown proxy type {}".format(proxy_type))
+            print_msg("ERROR: Unknown proxy type {}".format(proxy_type), 1)
         session.proxies.update(proxies)
 
     return session
