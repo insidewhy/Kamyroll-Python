@@ -1,4 +1,5 @@
 __pycache__
 .vscode
-/Kamyroll_Python.egg-info
+/cuteroll.egg-info
 /dist
+/build

@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name="Kamyroll-Python",
-    version="0.0.2",
+    name="cuteroll",
+    version="1.0.0",
     description="Download shows from crunchyroll",
-    url="https://github.com/hyugogirubato/Kamyroll-Python",
-    author="hyugogirubato",
+    url="https://github.com/insidewhy/cuteroll",
+    author="insidewhy",
     license="MIT",
-    scripts=["bin/kamyroll"],
-    packages=["kamyroll_python"],
+    scripts=["bin/cuteroll"],
+    packages=["cuteroll"],
     install_requires=[
         "requests",
         "colorama",

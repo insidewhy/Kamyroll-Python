@@ -1,8 +1,7 @@
-![Kamyroll_Python](/Presentation/img_title.png)
-![app workflow](https://github.com/hyugogirubato/Kamyroll-Python/workflows/main/badge.svg)
+![app workflow](https://github.com/insidewhy/cuteroll/workflows/main/badge.svg)
 
 ## Description
-Kamyroll-python is the python version of the program used in the application [Kamyroll](https://github.com/hyugogirubato/Kamyroll). This will allow you to download the videos and subtitles proposed by the Crunchyroll catalog or MP4 and ASS format to allow you to view the videos on all your devices without connection.
+cuteroll is a python version app that can be used to download videos and subtitles from Crunchyroll in MP4 and ASS formats.
  
 ## Features
 - Download videos in all resolutions
@@ -22,7 +21,7 @@ Kamyroll-python is the python version of the program used in the application [Ka
 
 ### Installation
 ```bash
-pip install kamyroll_python
+pip install cuteroll
 ```
 
 ## Information
@@ -79,7 +78,7 @@ Secure proxy compatible with Crunchyroll: https://github.com/Snawoot/hola-proxy
 #### Command
 - RED: Selected region
   
-#### Proxy in $HOME/.config/kamyroll.json
+#### Proxy in $HOME/.config/cuteroll.json
 - GREEN: uuid
 - BLUE: agent\_key
 - PURPLE: host
@@ -89,90 +88,77 @@ Secure proxy compatible with Crunchyroll: https://github.com/Snawoot/hola-proxy
 
 ### Login with ID
 ```
-kamyroll --login "MAIL:PASSWORD"
+cuteroll --login "MAIL:PASSWORD"
 ```
 or
 ```
-kamyroll -l "MAIL:PASSWORD"
+cuteroll -l "MAIL:PASSWORD"
 ```
 
 ### Login with configured ID
 ```
-kamyroll --connect
+cuteroll --connect
 ```
 or
 ```
-kamyroll -c
-```
-
-### Premium bypass (Windows version only)
-```
-kamyroll --bypass
-```
-or
-```
-kamyroll -b
+cuteroll -c
 ```
 
 ### Search a series, films, episode
 ```
-kamyroll --search "QUERY"
+cuteroll --search "QUERY"
 ```
 
 ### Show seasons of a series
 ```
-kamyroll --season "SERIES_ID"
+cuteroll --season "SERIES_ID"
 ```
 or
 ```
-kamyroll -s "SERIES_ID"
+cuteroll -s "SERIES_ID"
 ```
 
 ### Show episodes of a season
 ```
-kamyroll --episode "SEASON_ID"
+cuteroll --episode "SEASON_ID"
 ```
 or
 ```
-kamyroll -e "SEASON_ID"
+cuteroll -e "SEASON_ID"
 ```
 
 ### Show movies from a movie list
 ```
-kamyroll --movie "MOVIE_ID"
+cuteroll --movie "MOVIE_ID"
 ```
 or
 ```
-kamyroll -m "MOVIE_ID"
+cuteroll -m "MOVIE_ID"
 ```
 
 ### Download an episode or movie
 ```
-kamyroll --download "EPISODE_ID or MOVIE_ID"
+cuteroll --download "EPISODE_ID or MOVIE_ID"
 ```
 or
 ```
-kamyroll -d "EPISODE_ID or MOVIE_ID"
+cuteroll -d "EPISODE_ID or MOVIE_ID"
 ```
 
 ### Download playlist (bash download)
 ```
-kamyroll --download "SEASON_ID" --playlist "[START:END]"
+cuteroll --download "SEASON_ID" --playlist "[START:END]"
 ```
 or
 ```
-kamyroll -d "SEASON_ID" -p "[START:END]"
+cuteroll -d "SEASON_ID" -p "[START:END]"
 ```
 
 ### Get the video stream link (m3u8)
 ```
-kamyroll --url "EPISODE_ID or MOVIE_ID"
+cuteroll --url "EPISODE_ID or MOVIE_ID"
 ```
 or
 ```
-kamyroll -u "EPISODE_ID or MOVIE_ID"
+cuteroll -u "EPISODE_ID or MOVIE_ID"
 ```
-
----
-*This script was created by the [__Nashi Team__](https://sites.google.com/view/kamyroll/home).  
-Find us on [discord](https://discord.com/invite/g6JzYbh) for more information on projects in development.*

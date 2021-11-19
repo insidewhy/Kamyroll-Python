@@ -11,7 +11,7 @@ flake8-black = "*"
 black = "*"
 
 [packages]
-kamyroll_python = {editable = true,path = "."}
+cuteroll = {editable = true,path = "."}
 requests = "*"
 colorama = "*"
 termcolor = "*"
@@ -30,4 +30,4 @@ check_types = "mypy --check-untyped-defs --ignore-missing-imports ."
 check_formatting = "black --check ."
 lint = "flake8"
 format = "black ."
-kamyroll = "./bin/kamyroll"
+cuteroll = "./bin/cuteroll"
