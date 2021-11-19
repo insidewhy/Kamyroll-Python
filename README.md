@@ -8,12 +8,10 @@ cuteroll is a python version app that can be used to download videos and subtitl
 - Download subtitles in all languages
 - Search for videos
 - Compatible with or free or premium account
-- Use a proxy to unblock the entire catalog
-- Available for all platforms (macOS, Windows, Linux, etc.)
+- Support proxies
 - Download all available episodes and movies
 - Videos in mp4, mkv with or without Hardsub
-- Premium bypass (windows version only)
-- Download episodes by interval or number (bash download)
+- Download episodes by interval or number
 
 ## Requirements
 - [ffmpeg](https://www.ffmpeg.org)
@@ -72,17 +70,18 @@ Language | Title
 "ru-RU" | Русский
 
 ## Proxy configuration
-Secure proxy compatible with Crunchyroll: https://github.com/Snawoot/hola-proxy
-![proxy_example](/Presentation/img_proxy.png)
+socks and http proxies are supported and configured in `$HOME/.config/cuteroll.json` e.g.
 
-#### Command
-- RED: Selected region
-  
-#### Proxy in $HOME/.config/cuteroll.json
-- GREEN: uuid
-- BLUE: agent\_key
-- PURPLE: host
-- YELLOW: port
+```json
+{
+  "proxy": {
+    "is_proxy": true,
+    "type": "socks5",
+    "host": "localhost",
+    "port": "1080"
+  }
+}
+```
 
 ## Examples
 
